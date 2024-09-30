@@ -1,0 +1,62 @@
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+h2{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: normal;
+    text-align: center;
+}
+
+h3 {
+    font-family: "Arsenal", sans-serif;
+    font-style: normal;
+    text-align: center;
+}
+h4{
+    font-family: "Arsenal", sans-serif;
+    font-style: normal;
+    text-align: center;
+}
+
+.Persodle_p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 45px;
+}
+
+.Persodle_e{
+    font-family: "Arbutus Slab", serif;
+    font-size: 40px;
+}
+
+.Persodle_r{
+    background-color: black;
+    color: white;
+    font-size: 43px;
+}
+
+.Persodle_s{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 45px;
+}
+
+.Persodle_o{
+    font-family: "Arbutus Slab", serif;
+    font-size: 40px;
+    background-color: black;
+    color: white;
+}
+
+.Persodle_d{
+    font-size: 37px;
+}
+
+.Persodle_l{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 40px;
+}
+
+.Persodle_end{
+font-size: 50px;
+}

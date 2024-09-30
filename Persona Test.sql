@@ -1,4 +1,4 @@
 Select *
 From Persona, Elements
-Where Persona.Arcana= "Councillor"
+Where Persona.Arcana= "World"
 And Persona.ID = Elements.ID
