@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head> </head>
+  <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/mainpage.css') }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arbutus+Slab&display=swap" rel="stylesheet">
+  <body>
+    <h1>
+      <span class="Persodle_p">P</span><span class="Persodle_e">e</span><span class="Persodle_r">r</span><span class="Persodle_s">s</span><span class="Persodle_o">o</span><span class="Persodle_d">d</span><span class="Persodle_l">l</span><span class="Persodle_end">e</span> <span class="Persodle R">R</span>
+    </h1>
+    <h2>
+      A Persona based Wordle. 
+      <br>Inspired by all of the other wordle-like
+      spin-offs.
+    </h2>
+    <h3>Rules:</h3>
+    <h4>
+          Match the Arcana, Inherit Type and Elemental Affinities of the Persona
+          of the Day.<br>
+          After submitting a Persona, you will be told if you match the Arcana
+          and/or the Inherit Type or not.<br>
+          In terms of the Elemental Affinities feedback you will get:<br>  
+          
+            A green if you match the element.<br> 
+            An orange if the element is affiliated with the Persona. <br> 
+            A red if the Persona has a neutral affiliation to the element.<br>
+        </ul>
+      </ul>
+    </h4>
+    <textarea id = "textPersona">Enter Persona Guess...</textarea>
+    <button onclick="checkPersona()"> Guess</button>
+    <table id = "Element_Table">
+      <tr>
+        <!--Places images from static/image folder as table headers-->
+        <th><img src="{{ url_for('static', filename='images/Name.png') }}" class="Name" /></th>
+        <th><img src="{{ url_for('static', filename='images/Element.png') }}" class="Inherit" /></th>
+        <th><img src="{{ url_for('static', filename='images/Tarot.png') }}" class="Arcana" /></th>
+        <th><img src="{{ url_for('static', filename='images/Physical.png') }}" class="Phys" /></th>
+        <th><img src="{{ url_for('static', filename='images/Gun.png') }}" class="Gun" /></th>
+        <th><img src="{{ url_for('static', filename='images/Fire.png') }}" class="Fire" /></th>
+        <th><img src="{{ url_for('static', filename='images/Ice.png') }}" class="Ice" /></th>
+        <th><img src="{{ url_for('static', filename='images/Electric.png') }}" class="Elec" /></th>
+        <th><img src="{{ url_for('static', filename='images/Wind.png') }}" class="Wind" /></th>
+        <th><img src="{{ url_for('static', filename='images/Psi.png') }}" class="Psy" /></th>
+        <th><img src="{{ url_for('static', filename='images/Nuclar.png') }}" class="Nuc" /></th>
+        <th><img src="{{ url_for('static', filename='images/Bless.png') }}" class="Bless" /></th>
+        <th><img src="{{ url_for('static', filename='images/Curse.png') }}" class="Curse" /></th>
+      </tr>
+      <tr>
+        <td style="text-align:center">Name</td>
+        <td style="text-align:center">Inherit</td>
+        <td style="text-align:center">Arcana</td>
+        <td style="text-align:center">Phys</td>
+        <td style="text-align:center">Gun</td>
+        <td style="text-align:center">Fire</td>
+        <td style="text-align:center">Ice</td>
+        <td style="text-align:center">Elec</td>
+        <td style="text-align:center">Wind</td>
+        <td style="text-align:center">Psy</td>
+        <td style="text-align:center">Nuc</td>
+        <td style="text-align:center">Bless</td>
+        <td style="text-align:center">Curse</td>
+      </tr>
+    </table>
+  </body>
+
+  <script>
+
+    //vars that hold information from that persona that's being guessed
+    var guessPersonaName
+    var guessArcana
+    var guessInherit
+    var guessPhys
+    var guessGun
+    var guessFire
+    var guessIce
+    var guessElec
+    var guessWind
+    var guessPsy
+    var guessNuc
+    var guessBless
+    var guessCurse
+    var tableNumber = 2
+    var guessNumber
+
+    //function gets a random persona from the /newPersona route
+    //and parses the elemental relations to the vars above.
+    async function guessPersona()
+    {
+      const response = await fetch("/newPersona")
+      const responseJSON = await response.json();
+      const JSONString = JSON.stringify(responseJSON)
+      const persona = JSON.parse(JSONString)
+      console.log(persona)
+
+      guessPersonaName = persona.Name
+      guessInherit = persona.Inherit
+      guessArcana = persona.Arcana
+      guessPhys = persona.Physical
+      guessGun = persona.Gun
+      guessFire = persona.Fire
+      guessIce = persona.Ice
+      guessElec = persona.Electric
+      guessWind = persona.Wind
+      guessPsy = persona.Psychic
+      guessNuc = persona.Nuclear
+      guessBless = persona.Bless
+      guessCurse = persona.Curse
+      console.log(guessPersonaName)
+      console.log(guessPhys)
+      console.log(guessGun)
+      console.log(guessFire)
+      console.log(guessIce)
+      console.log(guessWind)
+      console.log(guessElec)
+      console.log(guessNuc)
+      console.log(guessPsy)
+      console.log(guessBless)
+      console.log(guessCurse)
+    }
+
+    //loads a new persona when entering the page, will be changed when
+    //more progress is done.
+    document.addEventListener("DOMContentLoaded", async () =>{
+      await guessPersona();
+    })
+
+
+    //takes the persona the user entered
+    async function checkPersona()
+    {
+      let userPersona = document.getElementById("textPersona").value
+      
+      const mainPath = "/getPersona/"
+      let path = mainPath.concat(userPersona)
+      const response = await fetch(path)
+      if(!response.ok)
+      {
+       alert("Persona doesn't exist in the compendium") 
+      }
+      else
+      {
+        const responseJSON = await response.json()
+      const JSONString = JSON.stringify(responseJSON)
+      const persona = JSON.parse(JSONString)
+
+      const userPersonaName = persona.Name
+      const userPersonaInherit = persona.Inherit
+      const userPersonaArcana = persona.Arcana
+      const userPersonaPhy = persona.Physical
+      const userPersonaGun= persona.Gun
+      const userPersonaFire = persona.Fire
+      const userPersonaIce = persona.Ice
+      const userPersonaElec = persona.Electric
+      const userPersonaWind = persona.Wind
+      const userPersonaPsy = persona.Psychic
+      const userPersonaNuc = persona.Nuclear
+      const userPersonaBless = persona.Bless
+      const userPersonaCurse = persona.Curse
+      
+      //helper function to check elemental relationships
+      checkStats(userPersonaName,userPersonaInherit,userPersonaArcana,userPersonaPhy,userPersonaGun,userPersonaFire,userPersonaIce,userPersonaWind,userPersonaElec,userPersonaPsy,userPersonaNuc,userPersonaBless,userPersonaCurse)
+      }
+    }
+
+    //compare elemental relationships and changes HTML based on said relationship
+    function checkStats(name,inherit,arcana,phys,gun,fire,ice,wind,elec,psy,nuc,bless,curse)
+    {
+      var table = document.getElementById("Element_Table")
+      var row = table.insertRow(tableNumber);
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      var cell6 = row.insertCell(5);
+      var cell7 = row.insertCell(6);
+      var cell8 = row.insertCell(7);
+      var cell9 = row.insertCell(8);
+      var cell10 = row.insertCell(9);
+      var cell11 = row.insertCell(10);
+      var cell12 = row.insertCell(11);
+      var cell13 = row.insertCell(12);
+    
+      if(name == guessPersonaName)
+      {
+        cell1.style.background = "blue"
+      }
+      else
+      {
+        cell1.style.background = "red"
+      }
+
+      if(inherit == guessInherit)
+      {
+        cell2.style.background = "blue"
+      }
+      else
+      {
+        cell2.style.background = "red"
+      }
+
+      if(arcana == guessArcana)
+      {
+        cell3.style.background = "blue"
+      }
+      else
+      {
+        cell3.style.background = "red"
+      }
+
+      if(phys == guessPhys)
+      {
+        cell4.style.background = "blue"
+      }
+      else
+      {
+        cell4.style.background = "red"
+      }
+
+      if(gun == guessGun)
+      {
+        cell5.style.background = "blue"
+      }
+      else
+      {
+        cell5.style.background = "red"
+      }
+      
+      if(fire == guessFire)
+      {
+        cell6.style.background = "blue"
+      }
+      else
+      {
+        cell6.style.background = "red"
+      }
+      if(ice == guessIce)
+      {
+        cell7.style.background = "blue"
+      }
+      else
+      {
+        cell7.style.background = "red"
+      }
+
+      if(wind == guessWind)
+      {
+        cell8.style.background = "blue"
+      }
+      else
+      {
+        cell8.style.background = "red"
+      }
+
+      if(elec == guessElec)
+      {
+        cell9.style.background = "blue"
+      }
+      else
+      {
+        cell9.style.background = "red"
+      }
+
+      if(psy == guessPsy)
+      {
+        cell10.style.background = "blue"
+      }
+      else
+      {
+        cell10.style.background = "red"
+      }
+
+      if(nuc == guessNuc)
+      {
+        cell11.style.background = "blue"
+      }
+      else
+      {
+        cell11.style.background = "red"
+      }
+
+      if(bless == guessBless)
+      {
+        cell12.style.background = "blue"
+      }
+      else
+      {
+        cell12.style.background = "red"
+      }
+      tableNumber = tableNumber + 1
+      guessNumber = guessNumber + 1
+    }
+  </script>
+</html>
