@@ -27,8 +27,8 @@ def login():
         print(f"Error opening the database {e}")
         abort(500)
 
-@app.route("/signin")
-def signin():
+@app.route("/signin", methods = ["POST"])
+def signin(username, password):
     conn = None
     try:
         conn = sqlite3.connect("./Persona5WordleDatabase.db")
@@ -37,6 +37,16 @@ def signin():
             Select User.Username, User.Password
             From User
         """
+        cursor = conn.cursor()
+        cursor.execute(sql)
+        row = cursor.fetchone()
+        if username == {"Username":row["Username"]}:
+            abort(1000)
+        elif password == {"Password":row["Password"]}:
+            abort(1000)
+        
+        
+
 
     except Error as e:
         print(f"Error opening the database {e}")

@@ -68,6 +68,17 @@
 
   <script>
 
+    async function signin()
+    {
+      const response = await fetch("/signin")
+
+    }
+
+    async function login()
+    {
+      const response = await fetch ("/login")
+    }
+
     //vars that hold information from that persona that's being guessed
     var guessPersonaName
     var guessArcana
@@ -93,7 +104,6 @@
       const responseJSON = await response.json();
       const JSONString = JSON.stringify(responseJSON)
       const persona = JSON.parse(JSONString)
-      console.log(persona)
 
       guessPersonaName = persona.Name
       guessInherit = persona.Inherit
@@ -108,17 +118,6 @@
       guessNuc = persona.Nuclear
       guessBless = persona.Bless
       guessCurse = persona.Curse
-      console.log(guessPersonaName)
-      console.log(guessPhys)
-      console.log(guessGun)
-      console.log(guessFire)
-      console.log(guessIce)
-      console.log(guessWind)
-      console.log(guessElec)
-      console.log(guessNuc)
-      console.log(guessPsy)
-      console.log(guessBless)
-      console.log(guessCurse)
     }
 
     //loads a new persona when entering the page, will be changed when
@@ -133,7 +132,7 @@
     {
       let userPersona = document.getElementById("textPersona").value
       
-      const mainPath = "/getPersona/"
+      const mainPath = "/getPersona"
       let path = mainPath.concat(userPersona)
       const response = await fetch(path)
       if(!response.ok)
@@ -184,7 +183,7 @@
       var cell12 = row.insertCell(11);
       var cell13 = row.insertCell(12);
     
-      if(name == guessPersonaName)
+      if(name === guessPersonaName)
       {
         cell1.style.background = "blue"
       }
@@ -193,7 +192,7 @@
         cell1.style.background = "red"
       }
 
-      if(inherit == guessInherit)
+      if(inherit === guessInherit)
       {
         cell2.style.background = "blue"
       }
@@ -202,7 +201,7 @@
         cell2.style.background = "red"
       }
 
-      if(arcana == guessArcana)
+      if(arcana === guessArcana)
       {
         cell3.style.background = "blue"
       }
@@ -211,7 +210,7 @@
         cell3.style.background = "red"
       }
 
-      if(phys == guessPhys)
+      if(phys === guessPhys)
       {
         cell4.style.background = "blue"
       }
@@ -220,7 +219,7 @@
         cell4.style.background = "red"
       }
 
-      if(gun == guessGun)
+      if(gun === guessGun)
       {
         cell5.style.background = "blue"
       }
@@ -229,7 +228,7 @@
         cell5.style.background = "red"
       }
       
-      if(fire == guessFire)
+      if(fire === guessFire)
       {
         cell6.style.background = "blue"
       }
@@ -237,7 +236,7 @@
       {
         cell6.style.background = "red"
       }
-      if(ice == guessIce)
+      if(ice === guessIce)
       {
         cell7.style.background = "blue"
       }
@@ -246,7 +245,7 @@
         cell7.style.background = "red"
       }
 
-      if(wind == guessWind)
+      if(wind === guessWind)
       {
         cell8.style.background = "blue"
       }
@@ -255,7 +254,7 @@
         cell8.style.background = "red"
       }
 
-      if(elec == guessElec)
+      if(elec === guessElec)
       {
         cell9.style.background = "blue"
       }
@@ -264,7 +263,7 @@
         cell9.style.background = "red"
       }
 
-      if(psy == guessPsy)
+      if(psy === guessPsy)
       {
         cell10.style.background = "blue"
       }
@@ -273,7 +272,7 @@
         cell10.style.background = "red"
       }
 
-      if(nuc == guessNuc)
+      if(nuc === guessNuc)
       {
         cell11.style.background = "blue"
       }
@@ -282,7 +281,7 @@
         cell11.style.background = "red"
       }
 
-      if(bless == guessBless)
+      if(bless === guessBless)
       {
         cell12.style.background = "blue"
       }
