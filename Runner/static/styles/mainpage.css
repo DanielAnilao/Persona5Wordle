@@ -20,48 +20,50 @@ h4{
     text-align: center;
 }
 
-.Persodle_p{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 45px;
-}
-
-.Persodle_e{
-    font-family: "Arbutus Slab", serif;
-    font-size: 40px;
-}
-
-.Persodle_r{
-    background-color: black;
-    color: white;
-    font-size: 43px;
-}
-
-.Persodle_s{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 45px;
-}
-
-.Persodle_o{
-    font-family: "Arbutus Slab", serif;
-    font-size: 40px;
-    background-color: black;
-    color: white;
-}
-
-.Persodle_d{
-    font-size: 37px;
-}
-
-.Persodle_l{
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 40px;
-}
-
-.Persodle_end{
-font-size: 50px;
+.persodle_title{
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-style: large;
+    text-align: center;
 }
 
 .Element_Table{
     margin-left: auto;
     margin-right: auto;
 }
+
+.guessArea{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-style: solid;
+    border-color: black;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+.elementTable{
+    border: solid;
+    border-color: black;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+
+.tableText{
+    border-bottom: solid black;
+}
+
+.guessNum{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
+.remainingGuesses{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    text-align: center;
+}
+
